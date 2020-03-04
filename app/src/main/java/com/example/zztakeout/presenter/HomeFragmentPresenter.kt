@@ -15,7 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeFragmentPresenter(var homeFragment: HomeFragment) {
-    var HOST = "http://10.0.242.115:8080"
+    var HOST = "http://10.0.245.30:8080"
     var takeoutService: TakeoutService
 
     init {

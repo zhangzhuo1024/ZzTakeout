@@ -5,6 +5,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
+
+apply plugin: 'com.mob.sdk'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -22,6 +24,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+MobSDK {
+    appKey "2e3da6a4cd9ab"
+    appSecret "4c7246c85180248ce10e9cbef68d62fa"
+    SMSSDK {}
 }
 
 dependencies {
