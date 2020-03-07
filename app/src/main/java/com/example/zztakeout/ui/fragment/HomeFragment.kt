@@ -9,6 +9,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -17,13 +18,13 @@ import com.example.zztakeout.dagger2.component.DaggerHomeFragmentComponent
 import com.example.zztakeout.dagger2.model.HomeFragmentModel
 import com.example.zztakeout.model.bean.Seller
 import com.example.zztakeout.presenter.HomeFragmentPresenter
-import com.example.zztakeout.ui.adapter.HomeRvAdapterer
+import com.example.zztakeout.ui.adapter.HomeRvAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
     lateinit var rvHome: RecyclerView
-    lateinit var homeRvAdapterer: HomeRvAdapterer
+    lateinit var homeRvAdapter: HomeRvAdapter
     @Inject
     lateinit var homeFragmentPresenter: HomeFragmentPresenter
 
@@ -31,9 +32,9 @@ class HomeFragment : Fragment() {
         val view = View.inflate(activity, R.layout.fragment_home, null)
         rvHome = view.findViewById<RecyclerView>(R.id.rv_home)
         rvHome.layoutManager = LinearLayoutManager(activity)
-        homeRvAdapterer = HomeRvAdapterer(activity)
+        homeRvAdapter = HomeRvAdapter(activity)
 
-        rvHome.adapter = homeRvAdapterer
+        rvHome.adapter = homeRvAdapter
 //        homeFragmentPresenter = HomeFragmentPresenter(this)
         DaggerHomeFragmentComponent.builder().homeFragmentModel(HomeFragmentModel(this)).build().inject(this)
         return view
@@ -91,11 +92,10 @@ class HomeFragment : Fragment() {
         mData.clear()
         mData.addAll(nearbySellers)
         mData.addAll(otherSellers)
-        homeRvAdapterer.setData(mData)
+        homeRvAdapter.setData(mData)
     }
 
     fun onHomeFail() {
-
-
+        Toast.makeText(activity, "服务器返回数据失败", Toast.LENGTH_SHORT).show()
     }
 }

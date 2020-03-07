@@ -26,7 +26,7 @@ class HomeFragmentPresenter(var homeFragment: HomeFragment) : NetPresenter() {
         val jsonObject = JSONObject(json)
         val nearby = jsonObject.getString("nearbySellerList")
         val other = jsonObject.getString("otherSellerList")
-        Log.e("home", nearby)
+        Log.e("Takeout", " HomeFragmentPresenter " + " parserJson")
         val gson = Gson()
         val nearbySellers: List<Seller> = gson.fromJson(nearby, object : TypeToken<List<Seller>>() {}.type)
         val otherSellers: List<Seller> = gson.fromJson(other, object : TypeToken<List<Seller>>() {}.type)

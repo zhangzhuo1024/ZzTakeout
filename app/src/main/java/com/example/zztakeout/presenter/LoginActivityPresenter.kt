@@ -19,6 +19,7 @@ class LoginActivityPresenter(val loginActivity: LoginActivity) : NetPresenter() 
     lateinit var connection :AndroidDatabaseConnection
     lateinit var savePoint :Savepoint
     override fun parserJson(json: String) {
+        Log.e("Takeout", " LoginActivityPresenter " + " parserJson")
         val user = Gson().fromJson<User>(json, User::class.java)
         if (user != null) {
             //缓存到内存中，登录界面结束后，可以快速显示用户信息

@@ -28,11 +28,11 @@ abstract class NetPresenter {
 
     var callback: Callback<ResponseInfo> = object : Callback<ResponseInfo> {
         override fun onFailure(call: Call<ResponseInfo>?, t: Throwable?) {
-            Log.e("Takeout", " NetPresenter " + "getHomeInfo onFailure")
+            Log.e("Takeout", " NetPresenter " + "getInfo onFailure")
         }
 
         override fun onResponse(call: Call<ResponseInfo>?, response: Response<ResponseInfo>?) {
-            Log.e("Takeout", " NetPresenter " + "getHomeInfo onResponse")
+            Log.e("Takeout", " NetPresenter " + " onResponse")
             if (response == null) {
                 Log.e("Takeout", " NetPresenter " + "服务器没有成功返回")
             } else {

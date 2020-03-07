@@ -14,7 +14,7 @@ import com.example.zztakeout.R.id.slider
 import com.example.zztakeout.model.bean.Seller
 import com.squareup.picasso.Picasso
 
-class HomeRvAdapterer(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var mDatas: ArrayList<Seller> = ArrayList<Seller>()
 
     fun setData(data: ArrayList<Seller>) {
