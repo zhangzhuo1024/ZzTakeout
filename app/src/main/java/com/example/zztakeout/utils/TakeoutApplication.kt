@@ -1,6 +1,7 @@
 package com.example.zztakeout.utils
 
 import android.util.Log
+import cn.jpush.android.api.JPushInterface
 import com.example.zztakeout.model.bean.User
 import com.mob.MobApplication
 
@@ -19,5 +20,7 @@ class TakeoutApplication : MobApplication() {
         super.onCreate()
         Log.e("Takeout", " TakeoutApplication onCreate")
         sUser.id = -1
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 }

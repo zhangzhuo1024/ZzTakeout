@@ -24,6 +24,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 MobSDK {
@@ -33,7 +38,7 @@ MobSDK {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
@@ -46,22 +51,21 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-
     //三方控件轮播图需要的依赖，SliderLayout
-    implementation 'com.squareup.picasso:picasso:2.3.2'  //图片加载框架
+    implementation 'com.squareup.picasso:picasso:2.3.2'
+    //图片加载框架
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.daimajia.slider:library:1.1.5@aar'
-
     //联网与数据解析
     implementation 'com.google.code.gson:gson:2.2.4'
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
-
     //dagger2 注解依赖  实现fragment与presenter的解耦
     kapt 'com.google.dagger:dagger-compiler:2.6'
     implementation 'com.google.dagger:dagger:2.6'
-
     //数据库
     implementation 'com.j256.ormlite:ormlite-android:5.1'
     implementation 'com.j256.ormlite:ormlite-core:5.1'
+    implementation files('libs/jpush-android_v3.0.6.jar')
+    implementation files('libs/jcore-android_v1.1.3.jar')
 }
