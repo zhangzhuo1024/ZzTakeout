@@ -13,6 +13,7 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView
 import com.example.zztakeout.R
 import com.example.zztakeout.R.id.slider
 import com.example.zztakeout.model.bean.Seller
+import com.example.zztakeout.ui.activity.BusinessActivity
 import com.squareup.picasso.Picasso
 
 class HomeRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -117,7 +118,8 @@ class HomeRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
             tvDistance = item.findViewById(R.id.tv_home_distance)
 
             item.setOnClickListener{
-//                val intent = Intent(BusinessActivity::class.java)
+                val intent = Intent(context, BusinessActivity::class.java)
+                context.startActivity(intent)
             }
         }
 
