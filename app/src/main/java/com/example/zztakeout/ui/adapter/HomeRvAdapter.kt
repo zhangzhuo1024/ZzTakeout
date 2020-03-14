@@ -1,6 +1,7 @@
 package com.example.zztakeout.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -114,6 +115,10 @@ class HomeRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
             tvSale = item.findViewById(R.id.tv_home_sale)
             tvSendPrice = item.findViewById(R.id.tv_home_send_price)
             tvDistance = item.findViewById(R.id.tv_home_distance)
+
+            item.setOnClickListener{
+//                val intent = Intent(BusinessActivity::class.java)
+            }
         }
 
         fun bindData(seller: Seller) {

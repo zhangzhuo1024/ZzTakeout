@@ -1,6 +1,7 @@
 package com.example.zztakeout.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +10,39 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.zztakeout.R
 import com.example.zztakeout.model.bean.Order
 import com.example.zztakeout.utils.OrderObservable
+import org.json.JSONObject
+import java.util.*
+import kotlin.collections.ArrayList
 
-class OrderRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class OrderRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() , Observer {
     var mDatas: List<Order> = ArrayList<Order>()
 
     fun setData(data: List<Order>) {
         mDatas = data
         notifyDataSetChanged()
+    }
+
+    init {
+        //绑定观察者模式
+        OrderObservable.instance.addObserver(this)
+    }
+
+    override fun update(observer: Observable?, data: Any?) {
+        Log.e("Takeout", " OrderRvAdapter " + data)
+        val jsonObject = JSONObject(data as String)
+        val type = jsonObject.getString("type")
+        val orderId = jsonObject.getString("orderId")
+        var index= -1
+        for (i in 0 until mDatas.size) {
+            val item = mDatas.get(i)
+            if (item.id.equals(orderId)) {
+                index = i
+            }
+        }
+        if (index != -1) {
+            mDatas.get(index).type = type
+            notifyItemChanged(index)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

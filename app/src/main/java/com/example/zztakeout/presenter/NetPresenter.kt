@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
@@ -22,6 +23,7 @@ abstract class NetPresenter {
         val retrofit = Retrofit.Builder()
             .baseUrl(HOST + "/TakeoutService/")
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()
         takeoutService = retrofit.create<TakeoutService>(TakeoutService::class.java!!)
     }
