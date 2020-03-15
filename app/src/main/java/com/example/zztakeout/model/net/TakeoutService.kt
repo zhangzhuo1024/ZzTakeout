@@ -1,5 +1,6 @@
 package com.example.zztakeout.model.net
 
+import com.example.zztakeout.model.bean.GoodsTypeInfo
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -17,4 +18,7 @@ interface TakeoutService {
 
     @GET("order")
     fun getOrderListByRxjava(@Query("id") id: Int): Observable<ResponseInfo>
+
+    @GET("business")
+    fun getBusinessInfo(@Query("sellerId") id: String): Call<ResponseInfo>
 }
