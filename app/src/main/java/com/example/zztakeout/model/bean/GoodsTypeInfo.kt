@@ -9,6 +9,8 @@ class GoodsTypeInfo {
     var info : String = ""
     //商品列表
     var list : List<GoodsInfo> = listOf()
+    //小红点数量
+    var tvRedDotCount : Int = 0
 
     constructor() : super() {}
     constructor(id: Int, name: String, info: String, list: List<GoodsInfo>) : super() {

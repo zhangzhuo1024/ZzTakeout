@@ -1,6 +1,7 @@
 package com.example.zztakeout.ui.activity
 
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
@@ -36,5 +37,16 @@ class BusinessActivity : AppCompatActivity() {
             return fragmentList.size
         }
 
+    }
+
+    fun addImageButton(ib: ImageButton, width: Int, height: Int) {
+        //将这个button添加到activity所占用的布局的区域里面
+        fl_Container.addView(ib, width, height)
+    }
+
+    fun getCartLocation(): IntArray {
+        val cartLocation = IntArray(2)
+        imgCart.getLocationInWindow(cartLocation)
+        return cartLocation
     }
 }

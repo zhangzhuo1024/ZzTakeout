@@ -21,6 +21,7 @@ class GoodsInfo {
     var oldPrice  = 0
     var sellerId = 0
     var typeId = 0
+    var count = 0
     var typeName: String = ""
 
     constructor() : super() {}

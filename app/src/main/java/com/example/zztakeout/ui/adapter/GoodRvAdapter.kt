@@ -35,10 +35,13 @@ class GoodRvAdapter(val goodsFragment : GoodsFragment) : RecyclerView.Adapter<Re
     var selectPosition: Int = 0
     inner class GoodsTypeItemHolder(var item: View) : RecyclerView.ViewHolder(item) {
         val tvGoodsTypeName: TextView
+        val tvRedDotCount: TextView
         var mPosition: Int = 0
         lateinit var mGoodsType :GoodsTypeInfo
+
         init {
             tvGoodsTypeName = item.findViewById(R.id.type)
+            tvRedDotCount = item.findViewById(R.id.tvRedDotCount)
             item.setOnClickListener {
                 selectPosition = mPosition
                 mDatas.get(mPosition).id
@@ -62,6 +65,12 @@ class GoodRvAdapter(val goodsFragment : GoodsFragment) : RecyclerView.Adapter<Re
                 tvGoodsTypeName.setTypeface(Typeface.DEFAULT)
             }
             tvGoodsTypeName.text = goodsType.name
+            tvRedDotCount.text = goodsType.tvRedDotCount.toString()
+            if (goodsType.tvRedDotCount > 0) {
+                tvRedDotCount.visibility = View.VISIBLE
+            } else {
+                tvRedDotCount.visibility = View.GONE
+            }
             mPosition = position
         }
     }

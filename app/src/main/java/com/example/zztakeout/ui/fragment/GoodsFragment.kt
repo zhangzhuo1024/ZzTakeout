@@ -32,15 +32,16 @@ class GoodsFragment : Fragment() {
     lateinit var slhlv: StickyListHeadersListView
     lateinit var goodsLvAdapter: GoodsLvAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val goodsView = View.inflate(activity, R.layout.fragment_goods, null)
+//        val goodsView = View.inflate(activity, R.layout.fragment_goods, null)
+        var goodsView = inflater.inflate(R.layout.fragment_goods, container, false)
         rvGoods = goodsView.findViewById(R.id.rv_goods_type)
         rvGoods.layoutManager = LinearLayoutManager(activity)
         goodRvAdapter = GoodRvAdapter(this)
         rvGoods.adapter = goodRvAdapter
 
 
-        slhlv = goodsView.findViewById<StickyListHeadersListView>(R.id.slhlv)
-        goodsLvAdapter = GoodsLvAdapter()
+        slhlv = goodsView.findViewById(R.id.slhlv)
+        goodsLvAdapter = GoodsLvAdapter(this)
         slhlv.adapter = goodsLvAdapter
         return goodsView
     }
