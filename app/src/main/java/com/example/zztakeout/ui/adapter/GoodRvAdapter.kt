@@ -2,6 +2,7 @@ package com.example.zztakeout.ui.adapter
 
 import android.graphics.Color
 import android.graphics.Typeface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,20 +16,25 @@ class GoodRvAdapter(val goodsFragment : GoodsFragment) : RecyclerView.Adapter<Re
     var mDatas: List<GoodsTypeInfo> = ArrayList<GoodsTypeInfo>()
 
     fun setData(data: List<GoodsTypeInfo>) {
+        Log.e("Takeout", " GoodRvAdapter " + "data = " + data)
         mDatas = data
+        Log.e("Takeout", " GoodRvAdapter " + "mDatas = " + mDatas)
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        Log.e("Takeout", " GoodRvAdapter  onCreateViewHolder")
         val goodsTypeItemView = LayoutInflater.from(parent.context).inflate(R.layout.item_type, parent, false)
         return GoodsTypeItemHolder(goodsTypeItemView)
     }
 
     override fun getItemCount(): Int {
+        Log.e("Takeout", " GoodRvAdapter  getItemCount" + "mDatas.size = " + mDatas.size)
         return mDatas.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        Log.e("Takeout", " GoodRvAdapter  onBindViewHolder" + "mDatas = " + mDatas)
         (holder as GoodsTypeItemHolder).bindData(mDatas[position], position)
     }
 
@@ -40,6 +46,7 @@ class GoodRvAdapter(val goodsFragment : GoodsFragment) : RecyclerView.Adapter<Re
         lateinit var mGoodsType :GoodsTypeInfo
 
         init {
+            Log.e("Takeout", " GoodRvAdapter " + "init = ")
             tvGoodsTypeName = item.findViewById(R.id.type)
             tvRedDotCount = item.findViewById(R.id.tvRedDotCount)
             item.setOnClickListener {
@@ -66,6 +73,8 @@ class GoodRvAdapter(val goodsFragment : GoodsFragment) : RecyclerView.Adapter<Re
             }
             tvGoodsTypeName.text = goodsType.name
             tvRedDotCount.text = goodsType.tvRedDotCount.toString()
+            Log.e("Takeout", " GoodRvAdapter " + "tvRedDotCount.text  = " + tvRedDotCount.text )
+
             if (goodsType.tvRedDotCount > 0) {
                 tvRedDotCount.visibility = View.VISIBLE
             } else {

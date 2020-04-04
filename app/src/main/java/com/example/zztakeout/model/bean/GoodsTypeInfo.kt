@@ -7,10 +7,10 @@ class GoodsTypeInfo {
     var name : String = ""
     //特价信息
     var info : String = ""
-    //商品列表
-    var list : List<GoodsInfo> = listOf()
     //小红点数量
     var tvRedDotCount : Int = 0
+    //商品列表
+    var list : List<GoodsInfo> = listOf()
 
     constructor() : super() {}
     constructor(id: Int, name: String, info: String, list: List<GoodsInfo>) : super() {
@@ -21,6 +21,6 @@ class GoodsTypeInfo {
     }
 
     override fun toString(): String {
-        return "GoodsTypeInfo [id=$id, name=$name, info=$info, list=$list]"
+        return "GoodsTypeInfo [id=$id, name=$name, tvRedDotCount=$tvRedDotCount, info=$info, list=$list]"
     }
 }

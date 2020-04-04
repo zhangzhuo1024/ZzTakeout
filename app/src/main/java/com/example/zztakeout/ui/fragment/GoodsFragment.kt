@@ -2,6 +2,7 @@ package com.example.zztakeout.ui.fragment
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,6 +58,7 @@ class GoodsFragment : Fragment() {
     }
 
     fun onGoodsSuccess(goodsTypeInfo: List<GoodsTypeInfo>, allGoodsList: ArrayList<GoodsInfo>) {
+        Log.e("Takeout", " GoodsFragment " + "onGoodsSuccess = " + goodsTypeInfo)
         goodRvAdapter.setData(goodsTypeInfo)
         goodsLvAdapter.setData(allGoodsList)
         slhlv.setOnScrollListener(object : AbsListView.OnScrollListener{

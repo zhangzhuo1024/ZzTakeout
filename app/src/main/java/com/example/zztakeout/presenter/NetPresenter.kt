@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Date: 2020/3/5
  */
 abstract class NetPresenter {
-    var HOST = "http://192.168.0.7:8080"
+    var HOST = "http://192.168.0.102:8080"
     var takeoutService: TakeoutService
 
     init {

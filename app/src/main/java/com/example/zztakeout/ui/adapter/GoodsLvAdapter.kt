@@ -98,6 +98,8 @@ class GoodsLvAdapter(val goodsFragment: GoodsFragment) : BaseAdapter(), StickyLi
 
                 R.id.ib_minus -> doMinusOperation()
             }
+            val businessActivity = goodsFragment.activity as BusinessActivity
+            businessActivity.updateCartUi()
         }
 
         private fun doAddOperation() {

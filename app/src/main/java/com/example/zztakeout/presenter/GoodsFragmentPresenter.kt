@@ -34,6 +34,7 @@ class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) :NetPresenter(){
 
         //获取到数据，刷新界面
         if (goodsTypeInfo.isNotEmpty()) {
+            Log.e("Takeout", " GoodsFragmentPresenter " + "goodsTypeInfo = " + goodsTypeInfo)
             goodsFragment.onGoodsSuccess(goodsTypeInfo, allGoodsList)
         } else {
             goodsFragment.onGoodsFail()
@@ -67,6 +68,16 @@ class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) :NetPresenter(){
             }
         }
         return typePosition
+    }
+
+    fun getCartList() : ArrayList<GoodsInfo> {
+        var cartGoodsList = ArrayList<GoodsInfo>()
+        for (j in 0 until allGoodsList.size){
+            if (allGoodsList.get(j).count > 0){
+                cartGoodsList.add(allGoodsList.get(j))
+            }
+        }
+        return cartGoodsList
     }
 
 }
