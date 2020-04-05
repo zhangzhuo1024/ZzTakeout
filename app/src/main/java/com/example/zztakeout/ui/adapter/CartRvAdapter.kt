@@ -12,10 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.zztakeout.R
 import com.example.zztakeout.model.bean.GoodsInfo
 import com.example.zztakeout.ui.activity.BusinessActivity
+import com.example.zztakeout.ui.fragment.GoodsFragment
 import com.example.zztakeout.utils.PriceFormater
 
-class CartRvAdapter(businessActivity: BusinessActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var mDatas: List<GoodsInfo> = ArrayList<GoodsInfo>()
+class CartRvAdapter(val businessActivity: BusinessActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private var mDatas: ArrayList<GoodsInfo> = ArrayList<GoodsInfo>()
 
     fun setData(data: ArrayList<GoodsInfo>) {
         mDatas = data
@@ -75,17 +76,39 @@ class CartRvAdapter(businessActivity: BusinessActivity) : RecyclerView.Adapter<R
 
         private fun doMinusOperation() {
             var count = mGoodsInfo.count
+            if (count == 1){
+                mDatas.remove(mGoodsInfo)
+            }
+            if (mDatas.size < 1) {
+                businessActivity.showOrHideCart()
+            }
             count--
             mGoodsInfo.count = count
-            Log.e("1111111111", "dddddddddddd = " + count)
             notifyDataSetChanged()
+            updateRedCountTv(false)
+            businessActivity.updateCartUi()
+        }
 
+        private fun updateRedCountTv(isAdd: Boolean) {
+            val goodsFragment = businessActivity.fragmentList[0] as GoodsFragment
+            val typePositin = goodsFragment.goodsFragmentPresenter.getTypePositinByTypeId(mGoodsInfo.typeId)
+            val goodsTypeInfo = goodsFragment.goodsFragmentPresenter.goodsTypeInfo.get(typePositin)
+            var count = goodsTypeInfo.tvRedDotCount
+            if (isAdd) {
+                count++
+            } else {
+                count--
+            }
+            goodsTypeInfo.tvRedDotCount = count
+            goodsFragment.goodRvAdapter.notifyDataSetChanged()
+            goodsFragment.goodsLvAdapter.notifyDataSetChanged()
         }
 
         private fun doAddOperation() {
             mGoodsInfo.count++
             notifyDataSetChanged()
-
+            updateRedCountTv(true)
+            businessActivity.updateCartUi()
         }
     }
 }

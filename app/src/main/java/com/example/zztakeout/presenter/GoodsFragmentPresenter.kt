@@ -12,6 +12,7 @@ import org.json.JSONObject
 class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) :NetPresenter(){
     lateinit var goodsTypeInfo:ArrayList<GoodsTypeInfo>
     lateinit var allGoodsList:ArrayList<GoodsInfo>
+    lateinit var cartGoodsList :  ArrayList<GoodsInfo>
     override fun parserJson(json: String) {
         Log.e("Takeout", " GoodsFragmentPresenter " + " parserJson")
         val jsonObject = JSONObject(json)
@@ -71,7 +72,7 @@ class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) :NetPresenter(){
     }
 
     fun getCartList() : ArrayList<GoodsInfo> {
-        var cartGoodsList = ArrayList<GoodsInfo>()
+        cartGoodsList = ArrayList<GoodsInfo>()
         for (j in 0 until allGoodsList.size){
             if (allGoodsList.get(j).count > 0){
                 cartGoodsList.add(allGoodsList.get(j))
@@ -80,4 +81,21 @@ class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) :NetPresenter(){
         return cartGoodsList
     }
 
+    fun clearCart() {
+        for (j in 0 until allGoodsList.size) {
+            if (allGoodsList.get(j).count != 0) {
+                allGoodsList.get(j).count = 0
+            }
+        }
+        for (i in 0 until goodsTypeInfo.size) {
+            if (goodsTypeInfo.get(i).tvRedDotCount != 0) {
+                goodsTypeInfo.get(i).tvRedDotCount = 0
+            }
+        }
+        for (i in 0 until cartGoodsList.size) {
+            if (cartGoodsList.get(i).count != 0) {
+                cartGoodsList.get(i).count = 0
+            }
+        }
+    }
 }
