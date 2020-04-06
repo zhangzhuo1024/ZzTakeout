@@ -10,10 +10,13 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.zztakeout.R
+import com.example.zztakeout.model.bean.CacheSelectedInfo
 import com.example.zztakeout.model.bean.GoodsInfo
 import com.example.zztakeout.ui.activity.BusinessActivity
 import com.example.zztakeout.ui.fragment.GoodsFragment
+import com.example.zztakeout.utils.Constants
 import com.example.zztakeout.utils.PriceFormater
+import com.example.zztakeout.utils.TakeoutApplication
 import com.squareup.picasso.Picasso
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter
 import java.util.ArrayList
@@ -109,6 +112,15 @@ class GoodsLvAdapter(val goodsFragment: GoodsFragment) : BaseAdapter(), StickyLi
                 val showAnimatin = getShowAnimatin()
                 tvCount.startAnimation(showAnimatin)
                 btnMinus.startAnimation(showAnimatin)
+                Log.e("Takeout", " GoodsLvAdapter " + " doAddOperation"
+                        + "   goodsInfo.sellerId " + goodsInfo.sellerId
+                        + "   goodsInfo.typeId  " + goodsInfo.typeId
+                        + "   goodsInfo.id  " + goodsInfo.id)
+                //添加缓存
+                TakeoutApplication.sInstance.addCacheSelectedInfo(CacheSelectedInfo(goodsInfo.sellerId,goodsInfo.typeId,goodsInfo.id,1))
+            }else{
+                //更新缓存
+                TakeoutApplication.sInstance.updateCacheSelectedInfo(goodsInfo.id, Constants.ADD)
             }
             count += 1
             goodsInfo.count = count
@@ -140,6 +152,9 @@ class GoodsLvAdapter(val goodsFragment: GoodsFragment) : BaseAdapter(), StickyLi
                 val hideAnimatin = getHideAnimatin()
                 tvCount.startAnimation(hideAnimatin)
                 btnMinus.startAnimation(hideAnimatin)
+                TakeoutApplication.sInstance.deleteCacheSelectedInfo(goodsInfo.id)
+            } else {
+                TakeoutApplication.sInstance.updateCacheSelectedInfo(goodsInfo.id, Constants.MINUS)
             }
             count -= 1
             goodsInfo.count = count

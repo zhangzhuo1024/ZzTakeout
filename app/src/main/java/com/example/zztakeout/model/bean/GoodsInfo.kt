@@ -39,7 +39,7 @@ class GoodsInfo {
     }
 
     override fun toString(): String {
-        return ("GoodsInfo [id=" + id + ", name=" + name + ", icon=" + icon + ", form=" + form + ", monthSaleNum="
+        return ("GoodsInfo [id=" + id + ", name=" + name + ", count=" + count +", icon=" + icon + ", form=" + form + ", monthSaleNum="
                 + monthSaleNum + ", bargainPrice=" + isBargainPrice + ", isNew=" + isNew + ", newPrice=" + newPrice
                 + ", oldPrice=" + oldPrice + "]")
     }

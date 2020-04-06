@@ -16,6 +16,7 @@ import com.example.zztakeout.R
 import com.example.zztakeout.model.bean.GoodsInfo
 import com.example.zztakeout.model.bean.GoodsTypeInfo
 import com.example.zztakeout.presenter.GoodsFragmentPresenter
+import com.example.zztakeout.ui.activity.BusinessActivity
 import com.example.zztakeout.ui.adapter.GoodRvAdapter
 import com.example.zztakeout.ui.adapter.GoodsLvAdapter
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView
@@ -54,7 +55,7 @@ class GoodsFragment : Fragment() {
 
     private fun initData() {
         goodsFragmentPresenter = GoodsFragmentPresenter(this)
-        goodsFragmentPresenter.getBusinessInfo("1")
+        goodsFragmentPresenter.getBusinessInfo((activity as BusinessActivity).seller.id.toString())
     }
 
     fun onGoodsSuccess(goodsTypeInfo: List<GoodsTypeInfo>, allGoodsList: ArrayList<GoodsInfo>) {

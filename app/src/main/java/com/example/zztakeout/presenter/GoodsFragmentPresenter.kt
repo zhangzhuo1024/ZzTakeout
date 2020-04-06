@@ -3,7 +3,9 @@ package com.example.zztakeout.presenter
 import android.util.Log
 import com.example.zztakeout.model.bean.GoodsInfo
 import com.example.zztakeout.model.bean.GoodsTypeInfo
+import com.example.zztakeout.ui.activity.BusinessActivity
 import com.example.zztakeout.ui.fragment.GoodsFragment
+import com.example.zztakeout.utils.TakeoutApplication
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
@@ -19,19 +21,31 @@ class GoodsFragmentPresenter(val goodsFragment: GoodsFragment) :NetPresenter(){
         val list = jsonObject.getString("list")
         val gson = Gson()
         goodsTypeInfo = gson.fromJson(list, object : TypeToken<List<GoodsTypeInfo>>() {}.type)
-        Log.e("Takeout", " GoodsFragmentPresenter " + " goodsTypeInfo" + goodsTypeInfo)
+        val businessActivity = goodsFragment.activity as BusinessActivity
 
         allGoodsList = arrayListOf<GoodsInfo>()
         for (i in 0 until goodsTypeInfo.size) {
             val goodsTypeInfo = goodsTypeInfo.get(i)
+            Log.e("Takeout", " GoodsFragmentPresenter " + " goodsTypeInfo" + goodsTypeInfo)
+            var tvRedCount = 0
+            if (businessActivity.hasSelectedGoods) {
+                tvRedCount = TakeoutApplication.sInstance.queryCacheSelectedInfoByTypeId(goodsTypeInfo.id)
+                goodsTypeInfo.tvRedDotCount = tvRedCount
+            }
             val aTypeList: List<GoodsInfo> = goodsTypeInfo.list
-            aTypeList.forEach {
-                it.typeId = goodsTypeInfo.id
-                it.typeName = goodsTypeInfo.name
+            for (j in 0 until aTypeList.size) {
+                val goodsInfo = aTypeList.get(j)
+                goodsInfo.typeId = goodsTypeInfo.id
+                goodsInfo.typeName = goodsTypeInfo.name
+                if ( tvRedCount > 0 ){
+                    Log.e("Takeout", " GoodsFragmentPresenter " + " goodsInfo.id = " + goodsInfo.id)
+                    goodsInfo.count = TakeoutApplication.sInstance.queryCacheSelectedInfoByGoodsId(goodsInfo.id)
+                }
+                Log.e("Takeout", " GoodsFragmentPresenter " + " goodsInfo = " + goodsInfo)
             }
             allGoodsList.addAll(aTypeList)
+            businessActivity.updateCartUi()
         }
-
 
         //获取到数据，刷新界面
         if (goodsTypeInfo.isNotEmpty()) {

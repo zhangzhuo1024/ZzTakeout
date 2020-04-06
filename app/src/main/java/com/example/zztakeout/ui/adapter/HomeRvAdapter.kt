@@ -14,6 +14,7 @@ import com.example.zztakeout.R
 import com.example.zztakeout.R.id.slider
 import com.example.zztakeout.model.bean.Seller
 import com.example.zztakeout.ui.activity.BusinessActivity
+import com.example.zztakeout.utils.TakeoutApplication
 import com.squareup.picasso.Picasso
 
 class HomeRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -119,6 +120,13 @@ class HomeRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.Vi
 
             item.setOnClickListener{
                 val intent = Intent(context, BusinessActivity::class.java)
+                var hasSelectedGoods = false
+                val selectedCount = TakeoutApplication.sInstance.queryCacheSelectedInfoBySellerId(mSeller.id.toInt())
+                if (selectedCount > 0) {
+                    hasSelectedGoods = true
+                }
+                intent.putExtra("hasSelectedGoods", hasSelectedGoods)
+                intent.putExtra("seller", mSeller)
                 context.startActivity(intent)
             }
         }

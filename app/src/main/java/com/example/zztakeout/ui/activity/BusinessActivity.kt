@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zztakeout.R
+import com.example.zztakeout.model.bean.Seller
 import com.example.zztakeout.ui.adapter.CartRvAdapter
 import com.example.zztakeout.ui.fragment.CommentsFragment
 import com.example.zztakeout.ui.fragment.GoodsFragment
@@ -29,9 +30,20 @@ class BusinessActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_business)
+        processIntent()
         vp.adapter = BusinessFragmentAdapter()
         tabs.setupWithViewPager(vp)
         bottom.setOnClickListener(this)
+    }
+    var hasSelectedGoods = false
+    lateinit var seller : Seller
+    private fun processIntent() {
+        hasSelectedGoods = intent.hasExtra("hasSelectedGoods")
+        if (hasSelectedGoods) {
+            seller = intent.getSerializableExtra("seller") as Seller
+            tvDeliveryFee.text = "另配送费用为" + PriceFormater.format(seller.deliveryFee.toFloat())
+            tvSendPrice.text = PriceFormater.format(seller.sendPrice.toFloat()) + "起送"
+        }
     }
 
     val fragmentList: List<Fragment> =
