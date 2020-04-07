@@ -41,13 +41,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.BusinessActivity"></activity>
+        <activity android:name=".ui.activity.AddOrEditAddressActivity"></activity>
+        <activity android:name=".ui.activity.OnlinePaymentActivity" />
+        <activity android:name=".ui.activity.RecepitAddressActivity">
+        </activity>
+        <activity android:name=".ui.activity.ConfirmOrderActivity" />
+        <activity android:name=".ui.activity.BusinessActivity" />
         <activity android:name=".ui.activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.LoginActivity" /> <!-- Required SDK 核心功能 -->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->

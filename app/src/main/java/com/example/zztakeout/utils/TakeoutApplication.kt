@@ -6,6 +6,7 @@ import com.example.zztakeout.model.bean.CacheSelectedInfo
 import com.example.zztakeout.model.bean.User
 import com.mob.MobApplication
 import java.util.concurrent.CopyOnWriteArrayList
+import kotlin.properties.Delegates
 
 /**
  * Created by zhangzhuo.
@@ -16,7 +17,7 @@ class TakeoutApplication : MobApplication() {
 
     companion object {
         var sUser: User = User()
-        lateinit var sInstance : TakeoutApplication
+        var sInstance : TakeoutApplication by Delegates.notNull()
     }
 
     override fun onCreate() {

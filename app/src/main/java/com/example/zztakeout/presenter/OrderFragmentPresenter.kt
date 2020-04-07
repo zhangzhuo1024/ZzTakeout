@@ -2,11 +2,9 @@ package com.example.zztakeout.presenter
 
 import android.util.Log
 import com.example.zztakeout.model.bean.Order
-import com.example.zztakeout.model.net.ResponseInfo
 import com.example.zztakeout.ui.fragment.OrderFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import rx.Observer
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 

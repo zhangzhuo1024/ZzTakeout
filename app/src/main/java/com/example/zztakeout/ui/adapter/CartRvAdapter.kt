@@ -1,7 +1,5 @@
 package com.example.zztakeout.ui.adapter
 
-import android.graphics.Color
-import android.graphics.Typeface
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View

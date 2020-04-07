@@ -2,17 +2,10 @@ package com.example.zztakeout.presenter
 
 import android.util.Log
 import com.example.zztakeout.model.bean.Seller
-import com.example.zztakeout.model.net.ResponseInfo
-import com.example.zztakeout.model.net.TakeoutService
 import com.example.zztakeout.ui.fragment.HomeFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeFragmentPresenter(var homeFragment: HomeFragment) : NetPresenter() {
 

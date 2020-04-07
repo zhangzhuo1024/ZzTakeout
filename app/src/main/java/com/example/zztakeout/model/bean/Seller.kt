@@ -2,7 +2,7 @@ package com.example.zztakeout.model.bean
 
 import android.content.pm.ActivityInfo
 import java.io.Serializable
-import java.util.ArrayList
+import java.util.*
 
 data class Seller(var id: Long, var pic: String, var name: String, var score: String, var sale: String,
                   var ensure: String, var invoice: String, var sendPrice: String, var deliveryFee: String,

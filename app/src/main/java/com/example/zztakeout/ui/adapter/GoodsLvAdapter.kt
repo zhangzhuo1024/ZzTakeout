@@ -19,7 +19,7 @@ import com.example.zztakeout.utils.PriceFormater
 import com.example.zztakeout.utils.TakeoutApplication
 import com.squareup.picasso.Picasso
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter
-import java.util.ArrayList
+import java.util.*
 
 class GoodsLvAdapter(val goodsFragment: GoodsFragment) : BaseAdapter(), StickyListHeadersAdapter {
 

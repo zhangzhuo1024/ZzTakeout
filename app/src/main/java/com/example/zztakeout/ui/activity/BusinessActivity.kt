@@ -1,6 +1,6 @@
 package com.example.zztakeout.ui.activity
 
-import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +19,6 @@ import com.example.zztakeout.ui.adapter.CartRvAdapter
 import com.example.zztakeout.ui.fragment.CommentsFragment
 import com.example.zztakeout.ui.fragment.GoodsFragment
 import com.example.zztakeout.ui.fragment.SellersFragment
-import com.example.zztakeout.utils.Constants
 import com.example.zztakeout.utils.PriceFormater
 import com.example.zztakeout.utils.TakeoutApplication
 import kotlinx.android.synthetic.main.activity_business.*
@@ -36,6 +35,7 @@ class BusinessActivity : AppCompatActivity(), View.OnClickListener {
         vp.adapter = BusinessFragmentAdapter()
         tabs.setupWithViewPager(vp)
         bottom.setOnClickListener(this)
+        tvSubmit.setOnClickListener(this)
     }
     var hasSelectedGoods = false
     lateinit var seller : Seller
@@ -95,11 +95,22 @@ class BusinessActivity : AppCompatActivity(), View.OnClickListener {
             tvSelectNum.visibility = View.GONE
         }
         tvCountPrice.text = PriceFormater.format(totalPrice)
+        if (totalPrice > seller.sendPrice.toFloat()) {
+            tvSendPrice.visibility = View.GONE
+            tvSubmit.visibility = View.VISIBLE
+        }else {
+            tvSendPrice.visibility = View.VISIBLE
+            tvSubmit.visibility = View.GONE
+        }
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.bottom -> showOrHideCart()
+            R.id.tvSubmit ->{
+                val intent = Intent(this, ConfirmOrderActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
@@ -117,11 +128,15 @@ class BusinessActivity : AppCompatActivity(), View.OnClickListener {
             showOrHideCart()
             TakeoutApplication.sInstance.clearCacheSelectedInfo(seller.id.toInt())
         }
-        builder.setNegativeButton("取消", object : DialogInterface.OnClickListener {
-            override fun onClick(dialog: DialogInterface?, which: Int) {
-                dialog?.dismiss()
-            }
-        })
+//        builder.setNegativeButton("取消", object : DialogInterface.OnClickListener {
+//            override fun onClick(dialog: DialogInterface?, which: Int) {
+//                dialog?.dismiss()
+//            }
+//        })
+        builder.setNegativeButton("取消", {dialog, which ->  dialog.dismiss()})
+        builder.setNegativeButton("取消"){dialog, which ->
+            dialog.cancel()
+            dialog.dismiss() }
         builder.show()
     }
 

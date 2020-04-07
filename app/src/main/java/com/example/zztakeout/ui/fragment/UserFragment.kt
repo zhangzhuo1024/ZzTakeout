@@ -1,11 +1,8 @@
 package com.example.zztakeout.ui.fragment
 
-import android.content.Context
-import android.net.Uri
-import android.os.Bundle
 import android.app.Fragment
 import android.content.Intent
-import android.opengl.Visibility
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-
 import com.example.zztakeout.R
 import com.example.zztakeout.ui.activity.LoginActivity
 import com.example.zztakeout.utils.TakeoutApplication

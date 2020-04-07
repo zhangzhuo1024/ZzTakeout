@@ -1,7 +1,7 @@
 package com.example.zztakeout.ui.fragment
 
-import android.os.Bundle
 import android.app.Fragment
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-
 import com.example.zztakeout.R
 import com.example.zztakeout.model.bean.Order
 import com.example.zztakeout.presenter.OrderFragmentPresenter
