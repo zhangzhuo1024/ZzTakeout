@@ -13,7 +13,9 @@ import com.example.zztakeout.R
 import com.example.zztakeout.model.bean.GoodsInfo
 import com.example.zztakeout.ui.activity.BusinessActivity
 import com.example.zztakeout.ui.fragment.GoodsFragment
+import com.example.zztakeout.utils.Constants
 import com.example.zztakeout.utils.PriceFormater
+import com.example.zztakeout.utils.TakeoutApplication
 
 class CartRvAdapter(val businessActivity: BusinessActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var mDatas: ArrayList<GoodsInfo> = ArrayList<GoodsInfo>()
@@ -78,6 +80,9 @@ class CartRvAdapter(val businessActivity: BusinessActivity) : RecyclerView.Adapt
             var count = mGoodsInfo.count
             if (count == 1){
                 mDatas.remove(mGoodsInfo)
+                TakeoutApplication.sInstance.deleteCacheSelectedInfo(mGoodsInfo.id)
+            } else {
+                TakeoutApplication.sInstance.updateCacheSelectedInfo(mGoodsInfo.id, Constants.MINUS)
             }
             if (mDatas.size < 1) {
                 businessActivity.showOrHideCart()
@@ -109,6 +114,8 @@ class CartRvAdapter(val businessActivity: BusinessActivity) : RecyclerView.Adapt
             notifyDataSetChanged()
             updateRedCountTv(true)
             businessActivity.updateCartUi()
+            //更新缓存
+            TakeoutApplication.sInstance.updateCacheSelectedInfo(mGoodsInfo.id, Constants.ADD)
         }
     }
 }

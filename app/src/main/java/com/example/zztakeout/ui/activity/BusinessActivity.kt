@@ -19,7 +19,9 @@ import com.example.zztakeout.ui.adapter.CartRvAdapter
 import com.example.zztakeout.ui.fragment.CommentsFragment
 import com.example.zztakeout.ui.fragment.GoodsFragment
 import com.example.zztakeout.ui.fragment.SellersFragment
+import com.example.zztakeout.utils.Constants
 import com.example.zztakeout.utils.PriceFormater
+import com.example.zztakeout.utils.TakeoutApplication
 import kotlinx.android.synthetic.main.activity_business.*
 
 class BusinessActivity : AppCompatActivity(), View.OnClickListener {
@@ -113,6 +115,7 @@ class BusinessActivity : AppCompatActivity(), View.OnClickListener {
             cartAdapter.notifyDataSetChanged()
             updateCartUi()
             showOrHideCart()
+            TakeoutApplication.sInstance.clearCacheSelectedInfo(seller.id.toInt())
         }
         builder.setNegativeButton("取消", object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
