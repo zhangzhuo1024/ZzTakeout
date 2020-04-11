@@ -1,5 +1,6 @@
 package com.example.zztakeout.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -19,16 +20,35 @@ class AddOrEditAddressActivity : AppCompatActivity() {
         processIntent()
         ib_back.setOnClickListener { finish() }
         ib_select_label.setOnClickListener { selectLabel() }
-        btn_ok.setOnClickListener {
-            if (intent.hasExtra("addressBean")){
-                updateAddress()
-            } else {
-                tv_title.text = "新增地址"
-                insertAddress()
-
-            }}
-
+        btn_ok.setOnClickListener { processAdress() }
+        btn_location_address.setOnClickListener{openMapAndLocation()}
         addressDao = AddressDao(this)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intent)
+        if(resultCode == 200 && intent != null){
+            val title = intent.getStringExtra("title")
+            val address = intent.getStringExtra("address")
+            et_receipt_address.setText(title)
+            et_detail_address.setText(address)
+        }
+
+    }
+
+    private fun openMapAndLocation() {
+        val intent = Intent(this, MapLocationActivity::class.java)
+        startActivityForResult(intent, 1003)
+    }
+
+    private fun processAdress() {
+        if (intent.hasExtra("addressBean")) {
+            updateAddress()
+        } else {
+            tv_title.text = "新增地址"
+            insertAddress()
+
+        }
     }
 
     lateinit var addressBean:RecepitAddressBean

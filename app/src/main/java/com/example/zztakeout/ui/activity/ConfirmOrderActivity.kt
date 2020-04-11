@@ -29,7 +29,9 @@ class ConfirmOrderActivity : AppCompatActivity() {
                 val recepitAddressBean = data.getSerializableExtra("address") as RecepitAddressBean
                 tv_name.text = recepitAddressBean.username
                 tv_phone.text = recepitAddressBean.phone
-                //其他都一样赋值
+                tv_label.text = recepitAddressBean.label
+                tv_address.text = recepitAddressBean.address
+
             }
         }
     }

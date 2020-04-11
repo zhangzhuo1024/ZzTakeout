@@ -79,4 +79,7 @@ dependencies {
     implementation 'com.android.support:design:29.0.2'
     //粘性标题的listview视图，和recycleView一起组成商家商品分栏效果
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
+    implementation files('libs/AMap_2DMap_V2.9.0_20160525.jar')
+    implementation files('libs/AMap_Location_V2.4.1_20160414.jar')
+    implementation files('libs/AMap_Search_V3.4.0_20160811.jar')
 }
