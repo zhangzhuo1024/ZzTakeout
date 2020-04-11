@@ -53,10 +53,7 @@ class MyReceiver: BroadcastReceiver() {
         }
     }
 
-    private fun receivingNotification(
-        context: Context,
-        bundle: Bundle
-    ) {
+    private fun receivingNotification(context: Context, bundle: Bundle) {
         val title = bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE)
         Log.d(TAG, " title : $title")
         val message = bundle.getString(JPushInterface.EXTRA_ALERT)

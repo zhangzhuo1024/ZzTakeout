@@ -1,5 +1,6 @@
 package com.example.zztakeout.utils
 
+import android.util.Log
 import java.util.*
 
 /**
@@ -16,10 +17,14 @@ import java.util.*
  */
 class OrderObservable private constructor() : Observable() {
     fun newMsgComing(extras: String) {
+        Log.e("Takeout", "OrderObservable")
         //从广播接受者获取到最新消息
         //通知所有观察者，新消息来了
+        Log.e("Takeout", " OrderObservable  newMsgComing  1" + extras)
         setChanged()
+        Log.e("Takeout", " OrderObservable  newMsgComing  2" + extras)
         notifyObservers(extras)
+        Log.e("Takeout", " OrderObservable  newMsgComing  3" + extras)
     }
 
     companion object {

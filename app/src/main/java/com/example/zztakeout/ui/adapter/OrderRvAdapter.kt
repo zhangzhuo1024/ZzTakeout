@@ -1,6 +1,7 @@
 package com.example.zztakeout.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zztakeout.R
 import com.example.zztakeout.model.bean.Order
+import com.example.zztakeout.ui.activity.OrderDetailActivity
 import com.example.zztakeout.utils.OrderObservable
 import org.json.JSONObject
 import java.util.*
@@ -69,6 +71,12 @@ class OrderRvAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.V
         init {
             tvOrderName = item.findViewById(R.id.tv_order_item_seller_name)
             tvOrderType = item.findViewById(R.id.tv_order_item_type) //订单状态
+            item.setOnClickListener {
+                val intent = Intent(context, OrderDetailActivity::class.java)
+                intent.putExtra("orderId", mOrder.id)
+                intent.putExtra("type", mOrder.type)
+                context.startActivity(intent)
+            }
         }
 
         fun bindData(order: Order) {

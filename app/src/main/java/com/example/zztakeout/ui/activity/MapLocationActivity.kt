@@ -102,14 +102,7 @@ class MapLocationActivity : AppCompatActivity(), LocationSource, AMapLocationLis
             if (aMapLocation != null && aMapLocation.getErrorCode() === 0) {
                 mListener.onLocationChanged(aMapLocation) // 显示系统小蓝点
                 //移动地图到当前位置
-                aMap.moveCamera(
-                    CameraUpdateFactory.changeLatLng(
-                        LatLng(
-                            aMapLocation.latitude,
-                            aMapLocation.longitude
-                        )
-                    )
-                )
+                aMap.moveCamera(CameraUpdateFactory.changeLatLng(LatLng(aMapLocation.latitude, aMapLocation.longitude)))
                 aMap.moveCamera(CameraUpdateFactory.zoomTo(16f))
                 doSearchQuery(aMapLocation)
             } else {
