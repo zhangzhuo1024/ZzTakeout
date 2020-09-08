@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Date: 2020/3/5
  */
 abstract class NetPresenter {
-    var HOST = "http://192.168.0.102:8080"
+    var HOST = "http://10.4.138.108:8080"
     var takeoutService: TakeoutService
 
     init {
@@ -30,7 +30,7 @@ abstract class NetPresenter {
 
     var callback: Callback<ResponseInfo> = object : Callback<ResponseInfo> {
         override fun onFailure(call: Call<ResponseInfo>?, t: Throwable?) {
-            Log.e("Takeout", " NetPresenter " + "getInfo onFailure")
+            Log.e("Takeout", " NetPresenter " + "getInfo onFailure" + t)
         }
 
         override fun onResponse(call: Call<ResponseInfo>?, response: Response<ResponseInfo>?) {
